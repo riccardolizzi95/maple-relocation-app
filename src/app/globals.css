@@ -1,0 +1,203 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Maple red palette — anchored to #d01b26, elegant not aggressive */
+  --color-maple-50: #fef2f2;
+  --color-maple-100: #fde3e4;
+  --color-maple-200: #fcc5c7;
+  --color-maple-300: #f89a9e;
+  --color-maple-400: #e94550;
+  --color-maple-500: #d01b26;
+  --color-maple-600: #ab1520;
+
+  /* Warm neutral grays (slight warmth, not blue-gray) */
+  --color-gray-50: #faf9f7;
+  --color-gray-100: #f3f1ee;
+  --color-gray-200: #e8e5e0;
+  --color-gray-300: #d4d0ca;
+  --color-gray-400: #a8a29e;
+  --color-gray-500: #78716c;
+  --color-gray-600: #57534e;
+  --color-gray-700: #44403c;
+  --color-gray-800: #292524;
+  --color-gray-900: #1c1917;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  /* shadcn semantic colors — mapped to maple */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  /* Warm cream background, not stark white */
+  --background: oklch(0.98 0.004 75);
+  --foreground: oklch(0.16 0.01 50);
+
+  /* Cards: clean white with warm undertone */
+  --card: oklch(0.995 0.002 75);
+  --card-foreground: oklch(0.16 0.01 50);
+
+  --popover: oklch(0.995 0.002 75);
+  --popover-foreground: oklch(0.16 0.01 50);
+
+  /* Primary: maple red — the signature accent */
+  --primary: oklch(0.50 0.20 25);
+  --primary-foreground: oklch(0.98 0.005 75);
+
+  /* Secondary: warm stone */
+  --secondary: oklch(0.95 0.006 75);
+  --secondary-foreground: oklch(0.30 0.01 50);
+
+  /* Muted: gentle warm gray */
+  --muted: oklch(0.94 0.006 75);
+  --muted-foreground: oklch(0.50 0.01 50);
+
+  /* Accent: soft amber glow */
+  --accent: oklch(0.94 0.02 75);
+  --accent-foreground: oklch(0.30 0.01 50);
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  /* Borders: warm, not cold gray */
+  --border: oklch(0.91 0.006 75);
+  --input: oklch(0.91 0.006 75);
+  --ring: oklch(0.50 0.20 25);
+
+  /* Charts: maple-inspired warm tones */
+  --chart-1: oklch(0.50 0.20 25);
+  --chart-2: oklch(0.65 0.12 55);
+  --chart-3: oklch(0.72 0.10 80);
+  --chart-4: oklch(0.50 0.08 20);
+  --chart-5: oklch(0.60 0.06 150);
+
+  --radius: 0.75rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.995 0.002 75);
+  --sidebar-foreground: oklch(0.16 0.01 50);
+  --sidebar-primary: oklch(0.50 0.20 25);
+  --sidebar-primary-foreground: oklch(0.98 0.005 75);
+  --sidebar-accent: oklch(0.96 0.012 25);
+  --sidebar-accent-foreground: oklch(0.30 0.01 50);
+  --sidebar-border: oklch(0.91 0.006 75);
+  --sidebar-ring: oklch(0.50 0.20 25);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+
+  /* Feel da app nativa su mobile: niente flash grigio al tap,
+     niente ritardo/zoom da doppio tap sui controlli */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button,
+  a,
+  select,
+  input,
+  textarea,
+  label {
+    touch-action: manipulation;
+  }
+}
+
+/* Scroll orizzontale senza barra visibile (tab, kanban, chip) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* iOS Safari zooma la pagina quando si tocca un campo con font < 16px,
+   facendola "uscire" lateralmente. Su mobile forziamo 16px su tutti i campi.
+   !important necessario: le utility Tailwind (text-sm) vincerebbero altrimenti. */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* I date/time picker iOS hanno una larghezza minima intrinseca che sfora
+     dalle celle di griglia: la azzeriamo e li facciamo aderire al contenitore
+     (ticket b347daf5) */
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="datetime-local"] {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100%;
+    display: block;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+
+  /* Le celle di griglia hanno min-width:auto e possono sforare col contenuto
+     intrinseco (date picker, testi lunghi): reset globale su mobile */
+  .grid > * {
+    min-width: 0;
+  }
+
+  /* Tastiera aperta (classe gestita da MobileNav): la barra di navigazione è
+     nascosta, quindi via anche il padding che le era riservato */
+  html.kb-open main {
+    padding-bottom: 0.5rem !important;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "regions": ["iad1"],
+  "crons": [
+    {
+      "path": "/api/keepalive",
+      "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/rates/daily",
+      "schedule": "30 16 * * *"
+    }
+  ]
+}
